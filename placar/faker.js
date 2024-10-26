@@ -9,7 +9,7 @@ const generateLearderBoardData = (number) => {
         nickname: faker.internet.userName(),
         avatar: faker.image.avatar(),
         created: faker.date.past(),
-        //incluir o game...
+        game: faker.word.interjection(),
         score: faker.number.int({ min: 99, max: 9999 }),
       });
       number--;

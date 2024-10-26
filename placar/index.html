@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placares de Jogos</title>
+    <title>Placar</title>
     <style>
         body { font-family: Arial, sans-serif; }
         form { margin-bottom: 20px; }
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <h1>Placares de Jogos</h1>
+    <h1>Os grandes, por games</h1>
     
     <form id="placarForm">
         <input type="text" id="nickname" placeholder="Nome do Jogador" required />
@@ -26,7 +26,7 @@
     <div class="placares" id="placares"></div>
     
     <script>
-        const apiUrl = 'http://localhost:3333/leaderboard';
+        const apiUrl = 'http://localhost:3333/leaderboard?_sort=game,-score';
 
         async function fetchPlacares() {
             const response = await fetch(apiUrl);
@@ -34,13 +34,13 @@
             const placaresContainer = document.getElementById('placares');
             placaresContainer.innerHTML = '';
 
-            placares.sort((a, b) => b.score - a.score); // Ordenar por pontuação decrescente
+        //    placares.sort((a, b) => b.score - a.score); // Ordenar por pontuação decrescente
 
             placares.forEach(placar => {
                 const placarDiv = document.createElement('div');
                 placarDiv.classList.add('placar-item');
                 placarDiv.innerHTML = `
-                    <img src="${placar.avatar}" alt="${placar.nickname}" class="avatar"/>
+                <!--   <img src="${placar.avatar}" alt="${placar.nickname}" class="avatar"/> -->
                     Jogador: ${placar.nickname}, Pontuação: ${placar.score}, Jogo: ${placar.game}
                 `;
                 placaresContainer.appendChild(placarDiv);
@@ -61,7 +61,7 @@
                     nickname,
                     score,
                     game,
-                    avatar: 'https://via.placeholder.com/40', // Placeholder para avatar
+             //       avatar: 'https://via.placeholder.com/40', // Placeholder para avatar
                     created: new Date().toISOString()
                 })
             });
